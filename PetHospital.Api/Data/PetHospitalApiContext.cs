@@ -16,7 +16,7 @@ namespace PetHospital.Api.Data
 
         public DbSet<PetHospital.Api.Models.Entities.Appointments> Appointments { get; set; } = default!;
         public DbSet<PetHospital.Api.Models.Entities.MedicalHistory> MedicalHistory { get; set; } = default!;
-        public DbSet<PetHospital.Api.Models.Entities.VeterinaryDoctor> VeterinaryDoctor { get; set; } = default!;
         public DbSet<PetHospital.Api.Models.Entities.Pets> Pets { get; set; } = default!;
+        public DbSet<PetHospital.Api.Models.Entities.VeterinaryDoctor> VeterinaryDoctor { get; set; } = default!;
     }
 }
