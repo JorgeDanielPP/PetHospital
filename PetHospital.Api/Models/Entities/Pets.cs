@@ -1,7 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
-namespace PetHospital.Web.Models.Entities
+namespace PetHospital.Api.Models.Entities
 {
+
     public class Pets
     {
         [Key]
