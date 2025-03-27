@@ -1,157 +1,88 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using PetHospital.Api.Data;
-using PetHospital.Api.Models.Entities;
+using PetHospital.Domain;
+using PetHospital.Domain.Entities;
+using System.Collections.Generic;
 
-namespace PetHospital.Api.Controllers
+namespace PetHospital.API.Controllers
 {
-    public class AppointmentsController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AppointmentsController : ControllerBase
     {
-        private readonly PetHospitalApiContext _context;
+        private readonly AppointmentsContext _appointmentsContext;
 
-        public AppointmentsController(PetHospitalApiContext context)
+        public AppointmentsController(AppointmentsContext appointmentsContext)
         {
-            _context = context;
+            _appointmentsContext = appointmentsContext;
         }
-
-        // GET: Appointments
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Appointments.ToListAsync());
-        }
-
-        // GET: Appointments/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var appointments = await _context.Appointments
-                .FirstOrDefaultAsync(m => m.IdCita == id);
-            if (appointments == null)
-            {
-                return NotFound();
-            }
-
-            return View(appointments);
-        }
-
-        // GET: Appointments/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Appointments/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdCita,Fecha,Hora,IdPet,IdVeterinario,MotivoCita")] Appointments appointments)
+        [Route("crear")]
+        public async Task<IActionResult> CrearCita(Appointments appointments)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(appointments);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(appointments);
+            await _appointmentsContext.AddAsync(appointments);
+            await _appointmentsContext.SaveChangesAsync();
+
+            return Ok();
         }
 
-        // GET: Appointments/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        [HttpGet]
+        [Route("listar")]
+        public async Task<ActionResult<IEnumerable<Appointments>>> GetCita()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var appointments = await _appointmentsContext.Appointments.ToListAsync();
+            return Ok(appointments);
 
-            var appointments = await _context.Appointments.FindAsync(id);
-            if (appointments == null)
-            {
-                return NotFound();
-            }
-            return View(appointments);
         }
 
-        // POST: Appointments/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdCita,Fecha,Hora,IdPet,IdVeterinario,MotivoCita")] Appointments appointments)
+        [HttpGet]
+        [Route("consultar")]
+        public async Task<ActionResult> ConsultarCita(int id)
         {
-            if (id != appointments.IdCita)
-            {
-                return NotFound();
-            }
+            Appointments appointments = await _appointmentsContext.Appointments.FindAsync(id);
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(appointments);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!AppointmentsExists(appointments.IdCita))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(appointments);
-        }
-
-        // GET: Appointments/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var appointments = await _context.Appointments
-                .FirstOrDefaultAsync(m => m.IdCita == id);
             if (appointments == null)
             {
                 return NotFound();
             }
 
-            return View(appointments);
-        }
+            return Ok(appointments);
 
-        // POST: Appointments/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        }
+        [HttpPut]
+        [Route("editar")]
+        public async Task<ActionResult> ModificarCita(int id, Appointments appointments)
         {
-            var appointments = await _context.Appointments.FindAsync(id);
-            if (appointments != null)
-            {
-                _context.Appointments.Remove(appointments);
-            }
+            var appointmentExistente = await _appointmentsContext.Appointments.FindAsync(id);
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            appointmentExistente.IdVeterinario = appointments.IdVeterinario;
+            appointmentExistente.IdPet = appointments.IdPet;
+            appointmentExistente.Hora = appointments.Hora;
+            appointmentExistente.IdVeterinario = appointments.IdVeterinario;
+            appointmentExistente.MotivoCita = appointments.MotivoCita;
+
+            await _appointmentsContext.SaveChangesAsync();
+
+
+            return Ok();
+
         }
-
-        private bool AppointmentsExists(int id)
+        [HttpDelete]
+        [Route("delete")]
+        public async Task<ActionResult> EliminarCita(int id)
         {
-            return _context.Appointments.Any(e => e.IdCita == id);
+            var citaEliminada = await _appointmentsContext.Appointments.FindAsync(id);
+            _appointmentsContext.Appointments.Remove(citaEliminada);
+            await _appointmentsContext.SaveChangesAsync();
+            return Ok();
         }
+
+   
+
+        
     }
 }
+
+
+

@@ -1,32 +1,32 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using PetHospital.Api.Data;
+using PetHospital.Domain;
+
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<PetHospitalApiContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("PetHospitalApiContext") ?? throw new InvalidOperationException("Connection string 'PetHospitalApiContext' not found.")));
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+
+builder.Services.AddControllers();
+
+builder.Services.AddDbContext<AppointmentsContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PetHospitalStrConnection") ?? throw new InvalidOperationException("Connection string 'PetHospitalStrConnection' not found.")));
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllers();
 
 app.Run();

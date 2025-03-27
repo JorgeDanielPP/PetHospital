@@ -3,18 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetHospital.Web", "PetHospital.Web\PetHospital.Web.csproj", "{FB9967C8-4ED8-498A-9125-00FE56DB258B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetHospital.Domain", "PetHospital.Domain\PetHospital.Domain.csproj", "{FCBCBEBE-355A-4845-8020-401711D53431}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetHospital.Infrastructure", "PetHospital.Infrastructure\PetHospital.Infrastructure.csproj", "{013D955D-4421-421D-9AFB-E0F89ED63A31}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetHospital.Application", "PetHopital.Application\PetHospital.Application.csproj", "{323524C6-4449-4DBE-911C-14A60C497E3C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetHospital.Api", "PetHospital.Api\PetHospital.Api.csproj", "{756347FD-A984-45E2-BF08-E81A2769E693}"
-	ProjectSection(ProjectDependencies) = postProject
-		{FB9967C8-4ED8-498A-9125-00FE56DB258B} = {FB9967C8-4ED8-498A-9125-00FE56DB258B}
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetHospital.API", "PetHospital.API\PetHospital.API.csproj", "{FEEBA21D-92D3-4154-9355-22C7018FB866}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetHospital.Web", "..\PetHospital.Web\PetHospital.Web.csproj", "{E721DC65-51B5-4AA1-8AA9-F612D7C3D836}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FB9967C8-4ED8-498A-9125-00FE56DB258B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB9967C8-4ED8-498A-9125-00FE56DB258B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB9967C8-4ED8-498A-9125-00FE56DB258B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB9967C8-4ED8-498A-9125-00FE56DB258B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FCBCBEBE-355A-4845-8020-401711D53431}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FCBCBEBE-355A-4845-8020-401711D53431}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCBCBEBE-355A-4845-8020-401711D53431}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -38,10 +31,14 @@ Global
 		{323524C6-4449-4DBE-911C-14A60C497E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{323524C6-4449-4DBE-911C-14A60C497E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{323524C6-4449-4DBE-911C-14A60C497E3C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{756347FD-A984-45E2-BF08-E81A2769E693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{756347FD-A984-45E2-BF08-E81A2769E693}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{756347FD-A984-45E2-BF08-E81A2769E693}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{756347FD-A984-45E2-BF08-E81A2769E693}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEEBA21D-92D3-4154-9355-22C7018FB866}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEEBA21D-92D3-4154-9355-22C7018FB866}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEEBA21D-92D3-4154-9355-22C7018FB866}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEEBA21D-92D3-4154-9355-22C7018FB866}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E721DC65-51B5-4AA1-8AA9-F612D7C3D836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E721DC65-51B5-4AA1-8AA9-F612D7C3D836}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E721DC65-51B5-4AA1-8AA9-F612D7C3D836}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E721DC65-51B5-4AA1-8AA9-F612D7C3D836}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
