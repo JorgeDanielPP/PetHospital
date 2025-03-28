@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PetHospitals.Web.Data;
+using PetHospital.Web.Data;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<PetHospitalsWebContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PetHospitalsWebContext") ?? throw new InvalidOperationException("Connection string 'PetHospitalsWebContext' not found.")));

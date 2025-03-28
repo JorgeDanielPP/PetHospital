@@ -11,9 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetHospital.Application", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetHospital.API", "PetHospital.API\PetHospital.API.csproj", "{FEEBA21D-92D3-4154-9355-22C7018FB866}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetHospital.Web", "..\PetHospital.Web\PetHospital.Web.csproj", "{E721DC65-51B5-4AA1-8AA9-F612D7C3D836}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHospitals.Web", "PetHospitals.Web\PetHospitals.Web.csproj", "{15C5E5E2-8124-4ACA-85C3-582D4901C112}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetHospital.Web", "PetHospitals.Web\PetHospital.Web.csproj", "{15C5E5E2-8124-4ACA-85C3-582D4901C112}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +35,6 @@ Global
 		{FEEBA21D-92D3-4154-9355-22C7018FB866}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEEBA21D-92D3-4154-9355-22C7018FB866}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEEBA21D-92D3-4154-9355-22C7018FB866}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E721DC65-51B5-4AA1-8AA9-F612D7C3D836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E721DC65-51B5-4AA1-8AA9-F612D7C3D836}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E721DC65-51B5-4AA1-8AA9-F612D7C3D836}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E721DC65-51B5-4AA1-8AA9-F612D7C3D836}.Release|Any CPU.Build.0 = Release|Any CPU
 		{15C5E5E2-8124-4ACA-85C3-582D4901C112}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{15C5E5E2-8124-4ACA-85C3-582D4901C112}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15C5E5E2-8124-4ACA-85C3-582D4901C112}.Release|Any CPU.ActiveCfg = Release|Any CPU

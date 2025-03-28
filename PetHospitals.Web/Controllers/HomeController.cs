@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using PetHospitals.Web.Models;
+using PetHospital.Web.Models;
 using System.Diagnostics;
 
-namespace PetHospitals.Web.Controllers
+namespace PetHospital.Web.Controllers
 {
     public class HomeController : Controller
     {

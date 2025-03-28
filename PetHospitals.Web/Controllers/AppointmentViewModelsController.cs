@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Newtonsoft.Json;
-using PetHospitals.Web.Models.Entities;
+using PetHospital.Web.Models.Entities;
 
 
 namespace PetHospital.Web.Controllers

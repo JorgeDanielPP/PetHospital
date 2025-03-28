@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace PetHospitals.Web.Models.Entities
+namespace PetHospital.Web.Models.Entities
 { 
 public class AppointmentViewModel
 {

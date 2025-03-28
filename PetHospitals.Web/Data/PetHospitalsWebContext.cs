@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using PetHospitals.Web.Models.Entities;
+using PetHospital.Web.Models.Entities;
 
-namespace PetHospitals.Web.Data
+namespace PetHospital.Web.Data
 {
     public class PetHospitalsWebContext : DbContext
     {
@@ -14,6 +14,6 @@ namespace PetHospitals.Web.Data
         {
         }
 
-        public DbSet<PetHospitals.Web.Models.Entities.AppointmentViewModel> AppointmentViewModel { get; set; } = default!;
+        public DbSet<PetHospital.Web.Models.Entities.AppointmentViewModel> AppointmentViewModel { get; set; } = default!;
     }
 }
