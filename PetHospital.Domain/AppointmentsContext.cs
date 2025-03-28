@@ -17,6 +17,7 @@ namespace PetHospital.Domain
         {
         }
         public DbSet<Appointments> Appointments { get; set; }
+        public DbSet<Appointments> AppointmentViewModel { get; set; }
         public DbSet<Pets> Pets { get; set; }
         public DbSet<MedicalHistory> MedicalHistory { get; set; }
         public DbSet<VeterinaryDoctor> VeterinaryDoctor { get; set; }
