@@ -19,7 +19,7 @@ namespace PetHospital.API.Controllers
         }
 
         [HttpPost]
-        [Route("crear")]
+        [Route("crearpets")]
         public async Task<IActionResult> CrearMascota(Pets pets)
         {
             await _appointmentsContext.AddAsync(pets);
@@ -28,7 +28,7 @@ namespace PetHospital.API.Controllers
             return Ok();
         }
         [HttpGet]
-        [Route("listar")]
+        [Route("listarpets")]
         public async Task<ActionResult<IEnumerable<Pets>>> GetMascota()
         {
             var pets = await _appointmentsContext.Pets.ToListAsync();
@@ -37,8 +37,8 @@ namespace PetHospital.API.Controllers
         }
 
         [HttpGet]
-        [Route("consultar")]
-        public async Task<ActionResult> ConsultarMascota(int id)
+        [Route("consultarpets")]
+        public async Task<IActionResult> ConsultarMascota(int id)
         {
             var pets = await _appointmentsContext.Pets.FindAsync(id);
 
@@ -51,7 +51,7 @@ namespace PetHospital.API.Controllers
 
         }
         [HttpDelete]
-        [Route("delete")]
+        [Route("deletepets")]
         public async Task<ActionResult> EliminarCita(int id)
         {
             var citaEliminada = await _appointmentsContext.Appointments.FindAsync(id);

@@ -23,10 +23,29 @@ namespace PetHospital.Domain
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Appointments>().HasIndex(c => c.IdCita).IsUnique();
-            modelBuilder.Entity<Pets>().HasIndex(c => c.IdPet).IsUnique();
-            modelBuilder.Entity<MedicalHistory>().HasIndex(c => c.IdHistorial).IsUnique();
-            modelBuilder.Entity<VeterinaryDoctor>().HasIndex(c => c.IdVeterinario).IsUnique();
+            //  modelBuilder.Entity<Appointments>().HasIndex(c => c.IdCita).IsUnique();
+            //  modelBuilder.Entity<Pets>().HasIndex(c => c.IdPet).IsUnique();
+            //  modelBuilder.Entity<MedicalHistory>().HasIndex(c => c.IdHistorial).IsUnique();
+            //  modelBuilder.Entity<VeterinaryDoctor>().HasIndex(c => c.IdVeterinario).IsUnique();
+
+            modelBuilder.Entity<Appointments>(entity =>
+            {
+                entity.HasKey(p => p.IdCita);
+            });
+
+            modelBuilder.Entity<Pets>(entity =>
+            {
+                entity.HasKey(p => p.IdPet);
+            });
+            modelBuilder.Entity<MedicalHistory>(entity =>
+            {
+                entity.HasKey(p => p.IdHistorial);
+            });
+            modelBuilder.Entity<VeterinaryDoctor>(entity =>
+            {
+                entity.HasKey(p => p.IdVeterinario);
+            });
+
         }
            
     }

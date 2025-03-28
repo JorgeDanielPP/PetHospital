@@ -38,7 +38,7 @@ namespace PetHospital.API.Controllers
 
         [HttpGet]
         [Route("consultar")]
-        public async Task<ActionResult> ConsultarCita(int id)
+        public async Task<IActionResult> ConsultarCita(int id)
         {
             Appointments appointments = await _appointmentsContext.Appointments.FindAsync(id);
 
@@ -52,7 +52,7 @@ namespace PetHospital.API.Controllers
         }
         [HttpPut]
         [Route("editar")]
-        public async Task<ActionResult> ModificarCita(int id, Appointments appointments)
+        public async Task<IActionResult> ModificarCita(int id, Appointments appointments)
         {
             var appointmentExistente = await _appointmentsContext.Appointments.FindAsync(id);
 
