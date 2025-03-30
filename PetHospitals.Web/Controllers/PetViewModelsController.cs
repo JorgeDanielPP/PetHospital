@@ -47,12 +47,78 @@ namespace PetHospital.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Error al crear producto");
+                    ModelState.AddModelError(string.Empty, "Error al crear mascota");
                 }
 
             }
             return View(pets);
         }
-    }
+        public async Task<IActionResult> Edit(int id)
+        {
+            var response = await _httpClient.GetAsync($"api/Pets/consultar?id={id}");
 
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                var pets = JsonConvert.DeserializeObject<PetViewModel>(content);
+                return View(pets);
+            }
+            else
+            {
+                return RedirectToAction("Details");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, PetViewModel pets)
+        {
+            if (ModelState.IsValid)
+            {
+                var json = JsonConvert.SerializeObject(pets);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await _httpClient.PutAsync($"api/Pets/editar?id={id}", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("index", new { id });
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Ërror al actualizar producto");
+                }
+            }
+            return View(pets);
+        }
+        public async Task<IActionResult> Details(int id)
+        {
+            var response = await _httpClient.GetAsync($"api/Pets/consultar?id={id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                var pets = JsonConvert.DeserializeObject<PetViewModel>(content);
+                return View(pets);
+            }
+            else
+            {
+                return RedirectToAction("Details");
+            }
+        }
+        public async Task<IActionResult> Delete(int id)
+        {
+            var response = await _httpClient.DeleteAsync($"api/Pets/eliminar?id={id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["Error"] = "Error al eliminar la mascota";
+                return RedirectToAction("Index");
+            }
+        }
+
+    }
 }
