@@ -14,6 +14,6 @@ namespace PetHospital.Web.Data
         {
         }
 
-        public DbSet<PetHospital.Web.Models.Entities.AppointmentViewModel> AppointmentViewModel { get; set; } = default!;
+        public DbSet<AppointmentViewModel> AppointmentViewModel { get; set; } = default!;
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Newtonsoft.Json;
+using PetHospital.Domain.Entities;
 using PetHospital.Web.Models.Entities;
 using System.Text;
 
@@ -10,14 +12,11 @@ namespace PetHospital.Web.Controllers
 {
     public class AppointmentViewModelsController : Controller
     {
-     //   Uri baseAddress = new Uri("https://localhost:44335/api");
         private readonly HttpClient _httpClient;
-           
+
         public AppointmentViewModelsController(IHttpClientFactory httpClientFactory)
         {
-            //     _httpClient = new HttpClient();
             _httpClient = httpClientFactory.CreateClient();
-            //   _httpClient.BaseAddress = baseAddress;
             _httpClient.BaseAddress = new Uri("https://localhost:44335/api");
         }
 
@@ -27,10 +26,10 @@ namespace PetHospital.Web.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                var appointments = JsonConvert.DeserializeObject<IEnumerable<AppointmentViewModel>>(content);
+                 var appointments = JsonConvert.DeserializeObject<IEnumerable<AppointmentViewModel>>(content);
                 return View("Index", appointments);
             }
-            return View(new List<AppointmentViewModel>());
+              return View(new List<AppointmentViewModel>());
         }
 
         public IActionResult Create()
@@ -39,14 +38,14 @@ namespace PetHospital.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult>Create(AppointmentViewModel appointment)
+        public async Task<IActionResult> Create(Appointments appointment)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                var json = JsonConvert.SerializeObject (appointment);
+                var json = JsonConvert.SerializeObject(appointment);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                var response = await _httpClient.PostAsync("/api/Appointment/crear", content);
+                var response = await _httpClient.PostAsync("/api/Appointments/crear", content);
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
@@ -78,18 +77,18 @@ namespace PetHospital.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, AppointmentViewModel appointment)
-        {
+           public async Task<IActionResult> Edit(int id, AppointmentViewModel appointment)
+         {
             if (ModelState.IsValid)
             {
                 var json = JsonConvert.SerializeObject(appointment);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                var response = await _httpClient.PutAsync($"api/Appointments/consultar?id={id}", content);
+                var response = await _httpClient.PutAsync($"api/Appointments/editar?id={id}", content);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("index", new {id});
+                    return RedirectToAction("index", new { id });
                 }
                 else
                 {
@@ -98,7 +97,39 @@ namespace PetHospital.Web.Controllers
             }
             return View(appointment);
         }
+        public async Task<IActionResult> Details(int id)
+        {
+            var response = await _httpClient.GetAsync($"api/Appointments/consultar?id={id}");
 
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                var appointments = JsonConvert.DeserializeObject<AppointmentViewModel>(content);
+                return View(appointments);
+            }
+            else
+            {
+                return RedirectToAction("Details");
+            }
+        }
+        public async Task<IActionResult> Delete(int id)
+        {
+            var response = await _httpClient.DeleteAsync($"api/Appointments/eliminar?id={id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["Error"] = "Error al eliminar el producto";
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
+
+
+
+
 

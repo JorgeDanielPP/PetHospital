@@ -69,7 +69,7 @@ namespace PetHospital.API.Controllers
 
         }
         [HttpDelete]
-        [Route("delete")]
+        [Route("eliminar")]
         public async Task<ActionResult> EliminarCita(int id)
         {
             var citaEliminada = await _appointmentsContext.Appointments.FindAsync(id);
