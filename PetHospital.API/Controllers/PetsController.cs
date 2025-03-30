@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PetHospital.Domain;
 using PetHospital.Domain.Entities;
-using PetHospital.Domain.Migrations;
-using System.Collections.Generic;
+using PetHospital.PetHospital.Domain.Entities;
+
 namespace PetHospital.API.Controllers
 {
     [Route("api/[controller]")]
@@ -17,9 +17,8 @@ namespace PetHospital.API.Controllers
         {
             _appointmentsContext = appointmentsContext;
         }
-
         [HttpPost]
-        [Route("crearpets")]
+        [Route("crear")]
         public async Task<IActionResult> CrearMascota(Pets pets)
         {
             await _appointmentsContext.AddAsync(pets);
@@ -27,9 +26,10 @@ namespace PetHospital.API.Controllers
 
             return Ok();
         }
+
         [HttpGet]
-        [Route("listarpets")]
-        public async Task<ActionResult<IEnumerable<Pets>>> GetMascota()
+        [Route("listar")]
+        public async Task<ActionResult<IEnumerable<Pets>>> GetMascotas()
         {
             var pets = await _appointmentsContext.Pets.ToListAsync();
             return Ok(pets);
@@ -37,10 +37,10 @@ namespace PetHospital.API.Controllers
         }
 
         [HttpGet]
-        [Route("consultarpets")]
+        [Route("consultar")]
         public async Task<IActionResult> ConsultarMascota(int id)
         {
-            var pets = await _appointmentsContext.Pets.FindAsync(id);
+            Pets pets = await _appointmentsContext.Pets.FindAsync(id);
 
             if (pets == null)
             {
@@ -50,19 +50,42 @@ namespace PetHospital.API.Controllers
             return Ok(pets);
 
         }
-        [HttpDelete]
-        [Route("deletepets")]
-        public async Task<ActionResult> EliminarCita(int id)
+
+        [HttpPut]
+        [Route("editar")]
+        public async Task<IActionResult> ModificarMascota(int id, Pets pets)
         {
-            var citaEliminada = await _appointmentsContext.Appointments.FindAsync(id);
-            _appointmentsContext.Appointments.Remove(citaEliminada);
+            var petsExistente = await _appointmentsContext.Pets.FindAsync(id);
+
+            petsExistente.Raza = pets.Raza;
+            petsExistente.Edad = pets.Edad;
+            petsExistente.Sexo = pets.Sexo;
+            petsExistente.Color = pets.Color;
+            petsExistente.NombrePet = pets.NombrePet;
+            petsExistente.Direccion = pets.Direccion;
+            petsExistente.NombrePropietario = pets. NombrePropietario;
+            petsExistente.CedulaPropietario = pets.CedulaPropietario;
+            petsExistente.Telefono = pets.Telefono;
+            await _appointmentsContext.SaveChangesAsync();
+
+
+            return Ok();
+
+        }
+
+        [HttpDelete]
+        [Route("eliminar")]
+        public async Task<ActionResult> EliminarMascota(int id)
+        {
+            var mascotaEliminada = await _appointmentsContext.Pets.FindAsync(id);
+            _appointmentsContext.Pets.Remove(mascotaEliminada);
             await _appointmentsContext.SaveChangesAsync();
             return Ok();
         }
 
 
+
+
     }
-
-
 
 }
