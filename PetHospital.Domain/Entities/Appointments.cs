@@ -11,6 +11,7 @@ public class Appointments
     public DateTime Hora { get; set; }
     public int? IdPet { get; set; }
     public int? IdVeterinario { get; set; }
+    [StringLength(50)]
     public string? MotivoCita { get; set; }
     
 }

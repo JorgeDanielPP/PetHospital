@@ -1,22 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace PetHospital.Domain.Entities
+namespace PetHospital.Domain.DTOs
 {
-    public class MedicalHistory
+    public class MedicalHistoryDTO
     {
-        [Key]
         public int IdHistorial { get; set; }
         public int IdPet { get; set; }
         public int IdCita { get; set; }
-        [StringLength(500)]
         public string? HistorialVacunas { get; set; }
         public DateTime FechaCreacion { get; set; }
-        [StringLength(500)]
         public string? MedicamentosRecetados { get; set; }
-        [StringLength(500)]
         public string? Diagnostico { get; set; }
-        
-
     }
 }
-

@@ -1,17 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace PetHospital.Domain.Entities
+namespace PetHospital.Domain.DTOs
 {
-    public class VeterinaryDoctor
+    public class VeterinaryDoctorDTO
     {
-        [Key]
         public int IdVeterinario { get; set; }
-        [StringLength(50)]
         public string NombreVeterinario { get; set; }
         public DateTime FechaIngreso { get; set; }
         public string? Telefono { get; set; }
-        [StringLength(100)]
         public string? Direccion { get; set; }
-
     }
 }

@@ -1,26 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace PetHospital.PetHospital.Domain.Entities
+namespace PetHospital.Domain.DTOs
 {
-    public class Pets
+    public class PetsDTO
     {
-        [Key]
         public int IdPet { get; set; }
-        [StringLength(50)]
         public string? Raza { get; set; }
         public int Edad { get; set; }
-        [StringLength(1)]
         public string? Sexo { get; set; }
-        [StringLength(50)]
         public string? Color { get; set; }
-        [StringLength(50)]
         public string? NombrePet { get; set; }
-        [StringLength(100)]
         public string? Direccion { get; set; }
-        [StringLength(50)]
         public string? NombrePropietario { get; set; }
         public string? CedulaPropietario { get; set; }
         public string? Telefono { get; set; }
-
     }
 }
