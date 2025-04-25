@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Newtonsoft.Json;
-using PetHospital.Domain.Entities;
+using PetHospital.Infraestructure.Entities;
 using PetHospital.Web.Models.Entities;
 using System.Text;
 

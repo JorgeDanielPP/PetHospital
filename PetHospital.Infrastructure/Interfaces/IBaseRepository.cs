@@ -1,4 +1,4 @@
-﻿using PetHospital.Domain.Core;
+﻿using PetHospital.Infraestructure.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;

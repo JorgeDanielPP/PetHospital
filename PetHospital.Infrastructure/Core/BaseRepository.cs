@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PetHospital.Domain;
-using PetHospital.Domain.Core;
+using PetHospital.Infraestructure;
+using PetHospital.Infraestructure.Core;
+using PetHospital.Infraestructure;
 using PetHospital.Infrastructure.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,31 +11,38 @@ using System.Threading.Tasks;
 
 namespace PetHospital.Infrastructure.Core
 {
-    public class BaseRepositoy<T>(AppointmentsContext context) : IBaseRepository<T> where T : BaseEntity
+    public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
-        protected readonly AppointmentsContext _context = context;
-        protected readonly DbSet<T> DbSet = context.Set<T>();
+        protected readonly AppointmentsContext _context;
+        protected readonly DbSet<T> _dbSet;
+
+        public BaseRepository(DbContext context)
+        {
+            _context = (AppointmentsContext?)context;
+            _dbSet = context.Set<T>();
+        }
+
 
         public async Task<bool> CreateAsync(T entity)
         {
-            await DbSet.AddAsync(entity);
+            await _dbSet.AddAsync(entity);
             return true;
         }
 
         public async Task<bool> DeleteAsync(T entity)
         {
-            DbSet.Remove(entity);
+            _dbSet.Remove(entity);
             return true;
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await DbSet.ToListAsync();
+            return await _dbSet.ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(int id)
         {
-            var entityDb = await DbSet.FindAsync(id);
+            var entityDb = await _dbSet.FindAsync(id);
             if (entityDb == null)
             {
                 throw new Exception("Not found");
@@ -50,7 +58,7 @@ namespace PetHospital.Infrastructure.Core
 
         public async Task<bool> UpdateAsync(T entity)
         {
-            DbSet.Update(entity);
+            _dbSet.Update(entity);
             return true;
         }
     }

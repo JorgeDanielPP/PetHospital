@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace PetHospital.Domain.Migrations
+namespace PetHospital.Infraestructure.Migrations
 {
     /// <inheritdoc />
     public partial class Pets : Migration

@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PetHospital.Infraestructure.Core;
+using System.ComponentModel.DataAnnotations;
 
 namespace PetHospital.PetHospital.Domain.Entities
 {
-    public class Pets
+    public class Pets : BaseEntity
     {
         [Key]
         public int IdPet { get; set; }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetHospital.Domain.Core
+namespace PetHospital.Infraestructure.Core
 {
     public class BaseEntity
     {            

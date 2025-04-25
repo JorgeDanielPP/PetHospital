@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using PetHospital.Domain;
+using PetHospital.Infraestructure;
 
 var builder = WebApplication.CreateBuilder(args);
 

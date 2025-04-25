@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PetHospital.Infraestructure.Core;
+using System.ComponentModel.DataAnnotations;
 
-namespace PetHospital.Domain.Entities
+namespace PetHospital.Infraestructure.Entities
 {
-    public class MedicalHistory
+    public class MedicalHistory : BaseEntity
     {
         [Key]
         public int IdHistorial { get; set; }

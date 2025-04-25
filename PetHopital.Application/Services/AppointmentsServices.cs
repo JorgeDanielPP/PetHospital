@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace PetHospital.Application.Services
 {
-    internal class AppointmentsServices
+    public class AppointmentsServices
     {
+
     }
 }

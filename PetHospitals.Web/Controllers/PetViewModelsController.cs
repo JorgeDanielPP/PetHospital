@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using PetHospital.Domain.Migrations;
+using PetHospital.Infraestructure.Migrations;
 using PetHospital.Web.Models.Entities;
 using System.Text;
 

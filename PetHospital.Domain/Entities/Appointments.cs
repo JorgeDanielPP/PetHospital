@@ -1,10 +1,11 @@
-﻿using System;
+﻿using PetHospital.Infraestructure.Core;
+using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace PetHospital.Domain.Entities
+namespace PetHospital.Infraestructure.Entities
 { 
-public class Appointments
-{
+public class Appointments : BaseEntity
+    {
     [Key]
     public int IdCita { get; set; }
     public DateTime Fecha { get; set; }

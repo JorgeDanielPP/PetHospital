@@ -17,8 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PetHopital.Application\PetHospital.Application.csproj" />
     <ProjectReference Include="..\PetHospital.API\PetHospital.API.csproj" />
     <ProjectReference Include="..\PetHospital.Domain\PetHospital.Domain.csproj" />
+	  
   </ItemGroup>
 
 </Project>

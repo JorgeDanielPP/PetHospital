@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PetHospital.Infraestructure.Core;
+using System.ComponentModel.DataAnnotations;
 
-namespace PetHospital.Domain.Entities
+namespace PetHospital.Infraestructure.Entities
 {
-    public class VeterinaryDoctor
+    public class VeterinaryDoctor : BaseEntity
     {
         [Key]
         public int IdVeterinario { get; set; }

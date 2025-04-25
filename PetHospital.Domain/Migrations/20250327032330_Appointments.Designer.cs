@@ -5,11 +5,12 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PetHospital.Domain;
+
+
 
 #nullable disable
 
-namespace PetHospital.Domain.Migrations
+namespace PetHospital.Infraestructure.Migrations
 {
     [DbContext(typeof(AppointmentsContext))]
     [Migration("20250327032330_Appointments")]

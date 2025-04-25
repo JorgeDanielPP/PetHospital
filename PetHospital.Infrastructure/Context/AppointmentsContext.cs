@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PetHospital.Domain.Entities;
+using PetHospital.Infraestructure.Entities;
 using PetHospital.PetHospital.Domain.Entities;
 using System;
 using System.Collections.Generic;

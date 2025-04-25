@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PetHospital.Domain;
-using PetHospital.Domain.Entities;
+using PetHospital.Infraestructure;
+using PetHospital.Infraestructure.Entities;
 using System.Collections.Generic;
 
 namespace PetHospital.API.Controllers
